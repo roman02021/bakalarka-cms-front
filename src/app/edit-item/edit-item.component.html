@@ -1,0 +1,17 @@
+<div class="modal" [class.show]="isOpen()">
+  <p>edit works form</p>
+  @if(dynamicForm){
+
+  <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+    @for(attribute of this.schema().attributes; track $index){
+    <attribute
+      [parentFormGroup]="dynamicForm"
+      [attribute]="attribute"
+      [collectionName]="schema().name"
+    ></attribute>
+    }
+
+    <button>confirm edit</button>
+  </form>
+  }
+</div>

@@ -1,0 +1,12 @@
+<p>collection works!</p>
+<p>url: {{ url }}</p>
+<ul>
+  @for(collection of collections; track collection.id){
+  <li>
+    <a [routerLink]="['/collection', collection.name]">
+      {{ collection.id }}
+      {{ collection.displayName }}
+    </a>
+  </li>
+  }
+</ul>

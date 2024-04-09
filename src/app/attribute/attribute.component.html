@@ -1,0 +1,41 @@
+<div [formGroup]="parentFormGroup()">
+  @if(attribute()){ @if(attribute().type === 'string'){
+  <label for="{{ attribute().id }}">{{ attribute().displayName }}</label>
+  <input
+    type="text"
+    id="{{ attribute().id }}"
+    [formControlName]="attribute().name"
+  />
+  } @else if(attribute().type === 'integer'){
+  <label for="{{ attribute().id }}">{{ attribute().displayName }}</label>
+  <input
+    type="number"
+    name="{{ attribute().name }}"
+    [formControlName]="attribute().name"
+  />
+  } @else if(attribute().type === 'relation'){
+  <label for="{{ attribute().id }}">{{ attribute().displayName }}</label>
+  <select id="{{ attribute().id }}" [formControlName]="attribute().name">
+    <option>no relation</option>
+    @for(relation of relations(); track relation.id){
+    <option value="{{ relation.id }}">
+      {{ relation.name }}
+    </option>
+    }
+  </select>
+  } @else if(attribute().type === 'file'){
+
+  <label for="{{ attribute().id }}">{{ attribute().displayName }}</label>
+  <button type="button" (click)="openFileManager()">Choose file</button>
+  <input
+    type="text"
+    [(value)]="chosenFile"
+    name="{{ attribute().name }}"
+    id="{{ attribute().id }}"
+    [formControlName]="attribute().name"
+  />
+  <div class="file-window" [class.show]="isFileManagerOpen()">
+    <file-manager [(chosenFile)]="chosenFile" />
+  </div>
+  } }
+</div>

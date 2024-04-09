@@ -9,17 +9,9 @@ export class FilesService {
   url = 'http://localhost:3000/';
   constructor(private http: HttpClient) {}
   getRootFolder() {
-    return this.http.get<FolderContent>(`${this.url}file/folder`, {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('id_token'),
-      },
-    });
+    return this.http.get<FolderContent>(`${this.url}file/folder`);
   }
   getFolderContent(folderId: number) {
-    return this.http.get<FolderContent>(`${this.url}file/folder/${folderId}`, {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('id_token'),
-      },
-    });
+    return this.http.get<FolderContent>(`${this.url}file/folder/${folderId}`);
   }
 }

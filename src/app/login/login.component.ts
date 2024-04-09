@@ -24,11 +24,13 @@ export class LoginComponent {
   });
 
   onSubmit() {
+    console.log('test');
     if (this.loginForm.value.username && this.loginForm.value.password) {
       this.authService.login(
         this.loginForm.value.username,
         this.loginForm.value.password
       );
+      this.authService.getProfile();
     }
   }
 }

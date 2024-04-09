@@ -9,6 +9,7 @@ export interface Folder {
   name: string;
   parentFolder: number;
   absolutePath: string;
+  relativePath: string;
 }
 
 export interface FolderContent {

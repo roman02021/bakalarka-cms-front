@@ -1,0 +1,19 @@
+<ul>
+  @if( currentFolderId !== null ){
+  <button type="button" (click)="goBack()">back</button>
+
+  } @for(folder of folders.folders; track folder.id){
+  <li>
+    <button type="button" (click)="loadFolderContent(folder.id)">
+      {{ folder.name }}
+    </button>
+  </li>
+  } @for(file of folders.files; track file.id){
+  <li>
+    {{ file.name }}
+    <button type="button" (click)="chooseFile(file.id)">
+      choose this file
+    </button>
+  </li>
+  }
+</ul>

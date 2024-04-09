@@ -1,0 +1,25 @@
+<!-- <p>items works!</p> -->
+
+<td>
+  {{ index() }}
+</td>
+@for(attribute of schema().attributes; track attribute.id){
+<td>
+  {{ item()[attribute.name] }}
+</td>
+}
+
+<td>
+  <button type="button" (click)="openEditForm()">edit (todo)</button>
+  <edit-item-form
+    [isOpen]="showEditItemForm()"
+    [schema]="schema()"
+    [items]="items()"
+    [item]="item()"
+    [id]="item().id"
+  >
+  </edit-item-form>
+</td>
+<td>
+  <button type="button" (click)="deleteItem(item().id)">delete</button>
+</td>

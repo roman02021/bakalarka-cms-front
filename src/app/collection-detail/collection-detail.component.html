@@ -1,0 +1,56 @@
+<p>collection-detail works!</p>
+<p>
+  data api: <a href="{{ dataUrl }}" target="_blank">{{ dataUrl }}</a>
+</p>
+<table>
+  <tr>
+    <th>ID</th>
+    @for(attribute of schema().attributes; track attribute.id){
+    <th>
+      {{ attribute.displayName }}
+    </th>
+
+    }
+  </tr>
+  @for(item of items(); track item.id; let i = $index){
+  <tr>
+    <item
+      [index]="i"
+      [item]="item"
+      [(items)]="items"
+      [schema]="schema()"
+    ></item>
+  </tr>
+
+  <!-- 
+  <tr>
+    <td>
+      {{ i }}
+    </td>
+    @for(attribute of schema().attributes; track attribute.id){
+    <td>
+      {{ item[attribute.name] }}
+    </td>
+    }
+
+    <td>
+      <button type="button" (click)="openEditForm()">edit (todo)</button>
+      <edit-item-form
+        [isOpen]="showEditItemForm()"
+        [schema]="schema()"
+        [items]="items()"
+      >
+      </edit-item-form>
+    </td>
+    <td>
+      <button type="button" (click)="deleteItem(item.id)">delete</button>
+    </td>
+  </tr> -->
+  }
+</table>
+<button (click)="openForm()">Create new item</button>
+<create-item-modal
+  [isOpen]="showCreateItemForm()"
+  [schema]="schema()"
+  [items]="items()"
+></create-item-modal>

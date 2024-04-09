@@ -1,0 +1,18 @@
+<div class="modal" [class.show]="isOpen()">
+  <p>modal works!</p>
+  <!-- {{ createItemForm.value.attributes }} -->
+  @if(dynamicForm){
+
+  <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+    @for(attribute of this.schema().attributes; track $index){
+    <attribute
+      [parentFormGroup]="dynamicForm"
+      [attribute]="attribute"
+      [collectionName]="schema().name"
+    ></attribute>
+    }
+
+    <button (click)="createItem()">create</button>
+  </form>
+  }
+</div>

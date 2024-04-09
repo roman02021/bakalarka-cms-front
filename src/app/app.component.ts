@@ -1,10 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
-import {
-  HttpClient,
-  HttpClientModule,
-  provideHttpClient,
-} from '@angular/common/http';
-import { CollectionService } from './collection.service';
+import { HttpClientModule } from '@angular/common/http';
+import { CollectionService } from './collection/collection.service';
 import { Collection } from './collection.interface';
 import { FolderContent } from './files.interface';
 import {
@@ -19,58 +15,50 @@ import { FolderComponent } from './folder/folder.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
+import { Profile } from './auth.service';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+
+interface User {
+  username: string;
+  isLoggedIn: boolean;
+}
 
 @Component({
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    FolderComponent,
-    LoginComponent,
-  ],
   selector: 'app-root',
   standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterLink,
+    RouterOutlet,
+    RouterLinkActive,
+    LoginComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  providers: [AuthService],
 })
 export class AppComponent implements OnInit {
-  title = 'zemanik-cms';
-  collections: Collection[] = [];
-  folders: FolderContent = {
-    files: [],
-    folders: [],
-  };
-
+  constructor(private collectionService: CollectionService) {
+    // this.user = this.authService.user();
+    this.profile = this.authService.getProfile();
+  }
   private authService = inject(AuthService);
+
+  title = 'zemanik-cms';
+
+  profile;
 
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
 
-  constructor(
-    private collectionService: CollectionService,
-    private filesService: FilesService
-  ) {}
-
-  ngOnInit() {}
-
-  loadCollections() {
-    console.log(this.authService.token, 'yppp');
-    this.collectionService.getAllCollections().subscribe((data) => {
-      this.collections = data;
-    });
+  logout() {
+    this.authService.logout();
   }
 
-  loadRootFolder() {
-    console.log('yoooaoao');
-    this.filesService.getRootFolder().subscribe((data) => {
-      this.folders = data;
-    });
-  }
-  loadFolderContent(folderId: number) {
-    this.filesService.getFolderContent(folderId).subscribe((data) => {
-      this.folders = data;
-    });
+  ngOnInit() {
+    this.profile = this.authService.getProfile();
   }
 }

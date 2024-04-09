@@ -1,28 +1,32 @@
-<section>
-  @if (true) {
-  <login-form></login-form>
-  }
-  <h1>Collections</h1>
-  <button (click)="loadCollections()">Load collecti ons</button>
-  <button (click)="loadRootFolder()">Load root folders</button>
+<h1>Zemanik CMS</h1>
+<nav>
   <ul>
-    <li *ngFor="let collection of collections">
-      {{ collection.id }}
-      {{ collection.displayName }}
+    <li>
+      <a
+        routerLink="/collections"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Collections</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/files"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Files</a
+      >
     </li>
   </ul>
-  <ul>
-    <li *ngFor="let folder of folders.folders">
-      <button (click)="loadFolderContent(folder.id)">
-        {{ folder.absolutePath }}
-        {{ folder.name }}
-      </button>
-    </li>
-  </ul>
-  <ul>
-    <li *ngFor="let file of folders.files">
-      {{ file.absolutePath }}
-      {{ file.name }}
-    </li>
-  </ul>
-</section>
+</nav>
+@if (!profile()) {
+<login-form></login-form>
+
+}@else {
+<p>{{ profile()?.username }}</p>
+
+<button (click)="logout()">logout</button>
+}
+
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>

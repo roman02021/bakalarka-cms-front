@@ -1,0 +1,6 @@
+.file-window {
+  display: none;
+  &.show {
+    display: block;
+  }
+}
