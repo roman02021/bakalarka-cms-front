@@ -9,9 +9,9 @@ export class FilesService {
   url = environment.backendUrl;
   constructor(private http: HttpClient) {}
   getRootFolder() {
-    return this.http.get<FolderContent>(`${this.url}file/folder`);
+    return this.http.get<FolderContent>(`${this.url}/file/folder`);
   }
   getFolderContent(folderId: number) {
-    return this.http.get<FolderContent>(`${this.url}file/folder/${folderId}`);
+    return this.http.get<FolderContent>(`${this.url}/file/folder/${folderId}`);
   }
 }

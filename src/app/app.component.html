@@ -1,4 +1,8 @@
-<h1>Zemanik CMS</h1>
+<h1>
+  <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"
+    >Zemanik CMS</a
+  >
+</h1>
 <nav>
   <ul>
     <li>
@@ -20,7 +24,24 @@
   </ul>
 </nav>
 @if (!profile()) {
-<login-form></login-form>
+<ul>
+  <li>
+    <a
+      routerLink="/login"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      >Login</a
+    >
+  </li>
+  <li>
+    <a
+      routerLink="/register"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      >Register</a
+    >
+  </li>
+</ul>
 
 }@else {
 <p>{{ profile()?.username }}</p>

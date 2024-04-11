@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 interface authResponse {
@@ -29,12 +30,11 @@ export class AuthService {
   user = signal<User | null>(null);
   profile = signal<Profile | null>(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(username: string, password: string) {
-    console.log('yo', username, password);
     this.http
-      .post<authResponse>(`${this.url}auth/login`, {
+      .post<authResponse>(`${this.url}/auth/login`, {
         username,
         password,
       })
@@ -42,7 +42,7 @@ export class AuthService {
         localStorage.setItem('access_token', res.access_token);
         this.token.set(res.access_token);
         this.http
-          .get<Profile>(`${this.url}auth/profile`, {
+          .get<Profile>(`${this.url}/auth/profile`, {
             headers: {
               Authorization: res.access_token,
             },
@@ -53,8 +53,6 @@ export class AuthService {
           });
       });
 
-    const test2 = localStorage.getItem('access_token');
-
     this.profile.set(this.getProfile()());
 
     return 'logged in';
@@ -63,9 +61,25 @@ export class AuthService {
     localStorage.removeItem('access_token');
     this.profile.set(null);
   }
+  register(username: string, password: string, email: string, name: string) {
+    this.http
+      .post<authResponse>(`${this.url}/auth/register`, {
+        name,
+        username,
+        password,
+        email,
+      })
+      .subscribe((res) => {
+        this.router.navigate(['/login']);
+      });
+
+    // this.profile.set(this.getProfile()());
+
+    return 'registered';
+  }
 
   getProfile() {
-    this.http.get<Profile>(`${this.url}auth/profile`).subscribe((profile) => {
+    this.http.get<Profile>(`${this.url}/auth/profile`).subscribe((profile) => {
       console.log(profile, 'yooo');
       this.profile.set(profile);
     });

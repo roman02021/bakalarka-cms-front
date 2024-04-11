@@ -1,0 +1,23 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="username">Username</label>
+    <input for="password" formControlName="username" type="text" />
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input id="password" formControlName="password" type="text" />
+  </div>
+  <div>
+    <label for="name">Name</label>
+    <input id="name" formControlName="name" type="text" />
+  </div>
+  <div>
+    <label for="email">Email</label>
+    <input id="email" formControlName="email" type="text" />
+  </div>
+
+  <button type="submit">Register</button>
+</form>
+<!-- <a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page"
+  >Login</a
+> -->
