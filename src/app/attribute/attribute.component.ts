@@ -4,7 +4,7 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilesComponent } from '../files/files.component';
 import { HttpClient } from '@angular/common/http';
 import { Attribute } from '../interfaces';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 interface Relation {
   id: number;

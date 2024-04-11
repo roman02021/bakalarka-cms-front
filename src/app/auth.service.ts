@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 interface authResponse {
   access_token: string;
@@ -22,7 +23,7 @@ export interface Profile {
   providedIn: 'root',
 })
 export class AuthService {
-  url = 'http://localhost:3000/';
+  url = environment.backendUrl;
   token = signal<string>('');
 
   user = signal<User | null>(null);

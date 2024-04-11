@@ -1,13 +1,7 @@
-import {
-  Component,
-  ViewEncapsulation,
-  input,
-  model,
-  signal,
-} from '@angular/core';
+import { Component, input, model, signal } from '@angular/core';
 import { Item, Attribute, Schema } from '../interfaces';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { EditItemComponent } from '../edit-item/edit-item.component';
 
 @Component({

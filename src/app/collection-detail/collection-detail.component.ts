@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, effect, model, signal } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ModalComponent } from '../modal/modal.component';
-import { EditItemComponent } from '../edit-item/edit-item.component';
+
 import { Item, Schema } from '../interfaces';
 import { ItemsComponent } from '../items/items.component';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-collection-detail',

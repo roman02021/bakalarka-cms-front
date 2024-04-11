@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CollectionService } from './collection.service';
 import { RouterLink } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
+import { CreateCollectionComponent } from '../create-collection/create-collection.component';
 export interface Collection {
   id?: string;
   displayName: string;
@@ -12,13 +13,14 @@ export interface Collection {
 @Component({
   selector: 'app-collection',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CreateCollectionComponent],
   templateUrl: './collection.component.html',
   styleUrl: './collection.component.scss',
 })
 export class CollectionComponent implements OnInit {
   url = environment.backendUrl;
-  collections: Collection[] = [];
+  collections = signal<Collection[]>([]);
+  collectionFormOpen = signal<boolean>(false);
 
   constructor(
     private http: HttpClient,
@@ -30,8 +32,11 @@ export class CollectionComponent implements OnInit {
   }
   loadCollections() {
     this.collectionService.getAllCollections().subscribe((data) => {
-      this.collections = data;
+      this.collections.set(data);
     });
+  }
+  openCreateCollectionForm() {
+    this.collectionFormOpen.set(!this.collectionFormOpen());
   }
 
   ngOnInit() {

@@ -1,14 +1,13 @@
 import { Component, effect, input, model } from '@angular/core';
 import { Item, Schema } from '../interfaces';
 import {
-  FormArray,
   FormBuilder,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { AttributeComponent } from '../attribute/attribute.component';
 
 @Component({

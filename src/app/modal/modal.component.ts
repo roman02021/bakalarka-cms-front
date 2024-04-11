@@ -1,23 +1,12 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  effect,
-  input,
-  model,
-  signal,
-} from '@angular/core';
-
+import { Component, OnInit, effect, input, model } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { HttpClient } from '@angular/common/http';
-import { FormArray } from '@angular/forms';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FilesComponent } from '../files/files.component';
 import { AttributeComponent } from '../attribute/attribute.component';
 import { Attribute, Item, Schema } from '../interfaces';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'create-item-modal',

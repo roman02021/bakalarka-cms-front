@@ -1,7 +1,7 @@
 <p>collection works!</p>
 <p>url: {{ url }}</p>
 <ul>
-  @for(collection of collections; track collection.id){
+  @for(collection of collections(); track collection.id){
   <li>
     <a [routerLink]="['/collection', collection.name]">
       {{ collection.id }}
@@ -10,3 +10,8 @@
   </li>
   }
 </ul>
+<button (click)="openCreateCollectionForm()">create collection</button>
+<create-collection-form
+  [isOpen]="collectionFormOpen()"
+  [(collections)]="collections"
+></create-collection-form>
