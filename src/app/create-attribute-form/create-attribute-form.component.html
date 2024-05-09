@@ -1,0 +1,27 @@
+<ng-container [formGroup]="formGroup()">
+  <div formArrayName="attributes">
+    <div formGroupName="{{ index() }}">
+      <label>Attribute {{ index() }}</label>
+      <input id="name-{{ index() }}" formControlName="name" type="text" />
+      <input
+        id="display-name-{{ index() }}"
+        formControlName="displayName"
+        type="text"
+      />
+      <label for="text-attribute-{{ index() }}">Text</label>
+      <input
+        id="text-attribute-{{ index() }}"
+        type="radio"
+        formControlName="type"
+        value="string"
+      />
+      <label for="number-attribute-{{ index() }}">Cele cislo</label>
+      <input
+        id="number-attribute-{{ index() }}"
+        type="radio"
+        formControlName="type"
+        value="integer"
+      />
+    </div>
+  </div>
+</ng-container>

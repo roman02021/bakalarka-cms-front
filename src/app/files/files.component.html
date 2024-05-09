@@ -8,6 +8,7 @@
       {{ folder.name }}
     </button>
   </li>
+
   } @for(file of folders.files; track file.id){
   <li>
     {{ file.name }}
@@ -16,4 +17,10 @@
     </button>
   </li>
   }
+  <li>
+    <form [formGroup]="fileForm" enctype="multipart/form-data">
+      <input #fileInput type="file" (change)="onChange($event)" />
+      <!-- <button>upload file</button> -->
+    </form>
+  </li>
 </ul>

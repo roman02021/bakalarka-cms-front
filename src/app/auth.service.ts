@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 interface authResponse {
-  access_token: string;
+  token: string;
 }
 interface User {
   username: string;
@@ -39,12 +39,12 @@ export class AuthService {
         password,
       })
       .subscribe((res) => {
-        localStorage.setItem('access_token', res.access_token);
-        this.token.set(res.access_token);
+        localStorage.setItem('access_token', res.token);
+        this.token.set(res.token);
         this.http
           .get<Profile>(`${this.url}/auth/profile`, {
             headers: {
-              Authorization: res.access_token,
+              Authorization: res.token,
             },
           })
           .subscribe((profile) => {

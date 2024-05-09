@@ -24,12 +24,12 @@ export class CollectionDetailComponent {
   });
   showCreateItemForm = signal(false);
 
-  dataUrl = `${this.url}/collections/${this.schema().name}`;
+  dataUrl = `${this.url}/api/${this.schema().name}`;
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {
     effect(() => {
       console.log(this.items(), 'IN COL DET');
-      this.dataUrl = `${this.url}/item/${this.schema().name}`;
+      this.dataUrl = `${this.url}/api/${this.schema().name}`;
     });
   }
 

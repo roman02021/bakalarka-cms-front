@@ -1,5 +1,16 @@
-const TYPES = ['string', 'integer', 'decimal', 'relation', 'file'] as const;
-const RELATIONS = ['oneToOne', 'oneToMany', 'manyToOne', 'manyToMany'] as const;
+export const TYPES = [
+  'string',
+  'integer',
+  'decimal',
+  'relation',
+  'file',
+] as const;
+export const RELATIONS = [
+  'oneToOne',
+  'oneToMany',
+  'manyToOne',
+  'manyToMany',
+] as const;
 
 export interface Attribute {
   id: number;
